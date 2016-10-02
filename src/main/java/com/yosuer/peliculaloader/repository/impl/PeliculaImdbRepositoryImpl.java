@@ -1,7 +1,7 @@
-package com.yosuer.repository.impl;
+package com.yosuer.peliculaloader.repository.impl;
 
-import com.yosuer.repository.PeliculaImdbRepository;
-import com.yosuer.domain.PeliculaImdb;
+import com.yosuer.peliculaloader.repository.PeliculaImdbRepository;
+import com.yosuer.peliculaloader.domain.PeliculaImdb;
 import java.net.URI;
 import org.slf4j.Logger;
 import static org.slf4j.LoggerFactory.getLogger;

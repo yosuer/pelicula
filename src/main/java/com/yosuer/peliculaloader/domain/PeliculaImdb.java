@@ -1,4 +1,4 @@
-package com.yosuer.domain;
+package com.yosuer.peliculaloader.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

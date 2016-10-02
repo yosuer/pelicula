@@ -1,4 +1,4 @@
-package com.yosuer;
+package com.yosuer.peliculaloader;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

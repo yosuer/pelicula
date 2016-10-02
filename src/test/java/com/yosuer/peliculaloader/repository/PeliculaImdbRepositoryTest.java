@@ -1,7 +1,8 @@
-package com.yosuer.repository;
+package com.yosuer.peliculaloader.repository;
 
+import com.yosuer.peliculaloader.repository.PeliculaImdbRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yosuer.domain.PeliculaImdb;
+import com.yosuer.peliculaloader.domain.PeliculaImdb;
 import java.io.IOException;
 import java.net.URI;
 import static org.assertj.core.api.Java6Assertions.assertThat;

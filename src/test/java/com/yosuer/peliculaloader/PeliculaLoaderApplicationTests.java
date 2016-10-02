@@ -1,4 +1,4 @@
-package com.yosuer;
+package com.yosuer.peliculaloader;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

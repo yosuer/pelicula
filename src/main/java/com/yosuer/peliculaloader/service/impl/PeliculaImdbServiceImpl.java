@@ -1,8 +1,8 @@
-package com.yosuer.service.impl;
+package com.yosuer.peliculaloader.service.impl;
 
-import com.yosuer.repository.PeliculaImdbRepository;
-import com.yosuer.service.PeliculaImdbService;
-import com.yosuer.domain.PeliculaImdb;
+import com.yosuer.peliculaloader.repository.PeliculaImdbRepository;
+import com.yosuer.peliculaloader.service.PeliculaImdbService;
+import com.yosuer.peliculaloader.domain.PeliculaImdb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
