@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PeliculaLoaderApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PeliculaLoaderApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PeliculaLoaderApplication.class, args);
+    }
 }
