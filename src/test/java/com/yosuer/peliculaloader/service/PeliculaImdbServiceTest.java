@@ -1,21 +1,16 @@
 package com.yosuer.peliculaloader.service;
 
-import com.yosuer.peliculaloader.service.PeliculaImdbService;
+import com.yosuer.peliculaloader.PeliculaLoaderApplicationTests;
 import com.yosuer.peliculaloader.repository.PeliculaImdbRepository;
 import com.yosuer.peliculaloader.domain.PeliculaImdb;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class PeliculaImdbServiceTest {
+public class PeliculaImdbServiceTest extends PeliculaLoaderApplicationTests {
 
     @Autowired
     private PeliculaImdbService peliculaImdbService;
@@ -36,12 +31,23 @@ public class PeliculaImdbServiceTest {
     @Test
     public void getByTitle_withExistentTitle_returnPeliculaImdb() {
         String title = "un titulo";
-        PeliculaImdb peliculaImdbMock = new PeliculaImdb();
-        peliculaImdbMock.setTitle(title);
+        PeliculaImdb peliculaImdbMock = buildPeliculaImdbMock(title);
         when(peliculaImdbRepository.getByTitle(title)).thenReturn(peliculaImdbMock);
 
         PeliculaImdb peliculaImdb = peliculaImdbService.getByTitle(title);
 
         assertEquals(title, peliculaImdb.getTitle());
+    }
+
+    private PeliculaImdb buildPeliculaImdbMock(String title) {
+        PeliculaImdb peliculaImdbMock = new PeliculaImdb();
+        peliculaImdbMock.setTitle(title);
+        peliculaImdbMock.setYear("1990");
+        peliculaImdbMock.setCountry("AlgunPais");
+        peliculaImdbMock.setGenre("Terror");
+        peliculaImdbMock.setPoster("urlDeLaImagen");
+        peliculaImdbMock.setPlot("Alguna descripcion");
+
+        return peliculaImdbMock;
     }
 }

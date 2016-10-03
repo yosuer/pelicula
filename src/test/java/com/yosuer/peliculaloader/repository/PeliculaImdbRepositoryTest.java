@@ -1,31 +1,28 @@
 package com.yosuer.peliculaloader.repository;
 
-import com.yosuer.peliculaloader.repository.PeliculaImdbRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yosuer.peliculaloader.PeliculaLoaderApplicationTests;
 import com.yosuer.peliculaloader.domain.PeliculaImdb;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
+import org.apache.commons.io.IOUtils;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.Assert.assertNull;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureMockRestServiceServer;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import org.springframework.web.util.UriComponentsBuilder;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 @AutoConfigureMockRestServiceServer
-public class PeliculaImdbRepositoryTest {
+public class PeliculaImdbRepositoryTest extends PeliculaLoaderApplicationTests{
 
     @Autowired
     private PeliculaImdbRepository peliculaImdbRepository;
@@ -40,8 +37,9 @@ public class PeliculaImdbRepositoryTest {
     private String urlApiOmdb;
 
     @Test
-    public void getByTitle_WithNonExistentTitle_returnNull() {
-        String jsonPeliculaNoEncontrada = "{\"Response\": \"False\",\"Error\": \"Movie not found!\"}";
+    public void getByTitle_WithNonExistentTitle_returnWithTitleNull() throws IOException {
+        String jsonPeliculaNoEncontrada = IOUtils.
+                toString(new FileInputStream("src/test/resources/responseImdbAPI/NotFound.json"), "UTF-8");
 
         URI uriApiOmdb = UriComponentsBuilder
                 .fromHttpUrl(urlApiOmdb)
@@ -56,12 +54,14 @@ public class PeliculaImdbRepositoryTest {
         PeliculaImdb peliculaImdb = peliculaImdbRepository.getByTitle("un titulo");
 
         mockRestServiceServer.verify();
-        assertNull(peliculaImdb);
+        assertNull(peliculaImdb.getTitle());
     }
 
     @Test
     public void getByTitle_WithExistentTitle_returnPeliculaImdb() throws IOException {
-        String jsonPeliculaExpected = "{\"Title\":\"un titulo\"}";       
+        String jsonPeliculaExpected = IOUtils.
+                toString(new FileInputStream("src/test/resources/responseImdbAPI/Found.json"), "UTF-8");
+
         PeliculaImdb peliculaImdbExpected = objectMapper.readValue(jsonPeliculaExpected, PeliculaImdb.class);
 
         URI uriApiOmdb = UriComponentsBuilder

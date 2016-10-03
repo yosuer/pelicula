@@ -30,14 +30,10 @@ public class PeliculaImdbRepositoryImpl implements PeliculaImdbRepository {
         URI uriOmdbApi = UriComponentsBuilder
                 .fromHttpUrl(urlOmdb)
                 .queryParam(PARAM_TITLE, title)
-                .build()
-                .toUri();
+                .build().toUri();
+
         logger.debug("Realizando petición a: {}", uriOmdbApi);
-        try {
-            peliculaImdb = restTemplate.getForObject(uriOmdbApi, PeliculaImdb.class);
-        } catch (HttpMessageNotReadableException e) {
-            logger.debug("Pelicula no encontrada, con titulo: {}", title);
-        }
+        peliculaImdb = restTemplate.getForObject(uriOmdbApi, PeliculaImdb.class);
 
         return peliculaImdb;
     }
