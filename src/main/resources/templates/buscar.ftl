@@ -7,11 +7,11 @@
 <div class="container">
     <br>
     <div class="row">
-        <div class="input-field col s5">
+        <div class="input-field col s6">
             <input id="titulo" type="text" class="validate">
             <label class="active" for="titulo">Titulo de peli</label>
             </div>
-        <div class="input-field col s5">
+        <div class="input-field col s3">
             <button class="btn waves-effect waves-light" id="btn-buscar" type="submit" name="action">Buscar
                 <i class="material-icons left">search</i>
                 </button>
